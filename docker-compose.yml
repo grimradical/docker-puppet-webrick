@@ -3,7 +3,6 @@ version: '2'
 services:
   puppet:
     build: ./docker-puppetwebrick
-    #image: puppetwebrick:latest
     depends_on:
       - loadbalancer
     ports:
@@ -18,7 +17,6 @@ services:
 
   loadbalancer:
     build: ./docker-gobetween-puppetwebrick
-    #image: gobetween-puppetwebrick
     network_mode: host
     # API is not exposed via this container currently
     ports:
