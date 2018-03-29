@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  puppet:
+    build: ./docker-puppetwebrick
+    #image: puppetwebrick:latest
+    depends_on:
+      - loadbalancer
+    ports:
+      - 8140
+    volumes:
+      - ./code:/etc/puppetlabs/code/
+      - ./puppet/ssl:/etc/puppetlabs/puppet/ssl/
+      - ./puppet/serverdata:/opt/puppetlabs/server/data/puppetserver/
+    labels:
+      # This label tells LB to look for multiple instances of this and balance them.
+      - puppetserver=true
+
+  loadbalancer:
+    build: ./docker-gobetween-puppetwebrick
+    #image: gobetween-puppetwebrick
+    network_mode: host
+    # API is not exposed via this container currently
+    ports:
+     - "8140:8140"
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
