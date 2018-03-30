@@ -24,20 +24,13 @@ RUN chown -R puppet:puppet /etc/puppetlabs/
 RUN chown -R puppet:puppet /var/log/puppetlabs/
 
 EXPOSE 8140
-EXPOSE 8141
-EXPOSE 8142
-EXPOSE 8143
-EXPOSE 8144
-EXPOSE 8145
-EXPOSE 8146
-EXPOSE 8147
-EXPOSE 8148
-EXPOSE 8149
+EXPOSE 8888
 
 COPY docker-entrypoint.sh /
 COPY run-webrick.sh /
+COPY gobetween /
+COPY gobetween.toml /
 
 ENTRYPOINT ["dumb-init", "/docker-entrypoint.sh"]
-#CMD ["master", "--verbose", "--no-daemonize" ]
 
 COPY Dockerfile /

@@ -11,4 +11,4 @@ for i in $(seq 10); do
   puppet master --no-daemonize --verbose --masterport=$((8140 + $i)) --rundir=/var/run/puppetlabs${i} &
 done
 
-wait
+exec /gobetween -c /gobetween.toml

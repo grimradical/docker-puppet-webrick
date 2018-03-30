@@ -1,0 +1,33 @@
+[logging]
+level = "info"   # "debug" | "info" | "warn" | "error"
+output = "stdout" # "stdout" | "stderr" | "/path/to/gobetween.log"
+
+[api]
+enabled = true  # true | false
+bind = ":8888"  # "host:port"
+cors = false    # cross-origin resource sharing
+
+[defaults]
+max_connections = 10             # Maximum simultaneous connections to the server
+client_idle_timeout = "0"        # Client inactivity duration before forced connection drop
+backend_idle_timeout = "0"       # Backend inactivity duration before forced connection drop
+backend_connection_timeout = "0" # Backend connection timeout (ignored in udp)
+
+[servers.webrick]
+protocol = "tcp"
+bind = "0.0.0.0:8140"
+
+  [servers.webrick.discovery]
+  kind = "static"
+  static_list = [
+      "localhost:8141",
+      "localhost:8142",
+      "localhost:8143",
+      "localhost:8144",
+      "localhost:8145",
+      "localhost:8146",
+      "localhost:8147",
+      "localhost:8148",
+      "localhost:8149",
+      "localhost:8150"
+  ]
