@@ -17,10 +17,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* && \
     gem install --no-rdoc --no-ri r10k
 
-RUN apt-get update && apt-get install -y libssl-dev gcc make
-RUN gem install unicorn
-RUN apt-get remove -y libssl-dev gcc make && apt autoremove -y
-
 RUN puppet config set autosign true --section master
 RUN puppet config set dns_alt_names puppet --section master
 RUN puppet resource user puppet ensure=present
