@@ -1,7 +1,7 @@
 # A basic TCP load-balancer for scaling out Puppet Servers.
 
 [logging]
-  level = "debug"
+  #level = "debug"
   output = "stdout"
 
 [api]
